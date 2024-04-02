@@ -1,0 +1,5 @@
+add_executable(PizzasTest test_main.cpp)
+target_link_libraries(PizzasTest lib)
+target_link_libraries(PizzasTest GTest::gtest)
+target_link_libraries(PizzasTest GTest::gmock)
+add_test(GTest PizzasTest)
