@@ -1,5 +1,3 @@
 #include "Funghi.hpp"
 
-Funghi::Funghi(double price)
-    : Pizza("Funghi", price, minutes(4))
-{}
+Funghi::Funghi(double price) : ConcretePizza("Funghi", price, minutes(4)) {}

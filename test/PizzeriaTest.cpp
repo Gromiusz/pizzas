@@ -18,7 +18,6 @@ public:
 class PizzaDummy : public Pizza 
 {
 public:
-    PizzaDummy() : Pizza("DummyPizza", 10.0, minutes(0)) {}
     std::string getName() const override {return "Dummy";}
     double getPrice() const override {return 10;}
     minutes getBakingTime() const override {return minutes(0);}
@@ -26,23 +25,22 @@ public:
 
 class PizzaStub : public Pizza
 {
+    std::string name_;
 public:
-    PizzaStub(std::string const & name) : Pizza(name, 10.0, minutes(1)) {}
-    std::string getName() const override {return Pizza::getName();}
+    PizzaStub(std::string const & name) : name_(name) {}
+    std::string getName() const override {return name_;}
     double getPrice() const override 
     {
-        std::string name = Pizza::getName();
-        if(name.size() >= 4)
+        if(name_.size() >= 4)
         {
-            return static_cast<double>(name[3]);
+            return static_cast<double>(name_[3]);
         }
         return 10.0;
     }
     minutes getBakingTime() const override 
     {
         double sum = 0;
-        std::string name = Pizza::getName();
-        for(const auto & letter : name)
+        for(const auto & letter : name_)
         {
             sum += (static_cast<double>(letter)/100);
         }
@@ -53,7 +51,6 @@ public:
 class PizzaMock : public Pizza
 {
 public:
-    PizzaMock() : Pizza("PizzaMock", 5.0, minutes(1)) {}
     MOCK_METHOD(std::string, getName, (), (const, override));
     MOCK_METHOD(double, getPrice, (), (const, override));
     MOCK_METHOD(minutes, getBakingTime, (), (const, override));

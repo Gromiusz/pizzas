@@ -1,7 +1,7 @@
 #pragma once
 #include "Pizza.hpp"
 
-class Margherita : public Pizza
+class Margherita : public ConcretePizza
 {
 public:
     Margherita() = delete;
