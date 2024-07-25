@@ -107,3 +107,18 @@ TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
 
     delete mock;
 }
+
+TEST_F(PizzeriaTest, bakePizzasForPizzaMock)
+{   
+    // Given
+    PizzaMock* mock = new PizzaMock{};
+    Pizzas pizzas = {mock};
+    EXPECT_CALL(*mock, getBakingTime()).WillOnce(Return(minutes(0)));
+    
+    // When
+    auto orderId = pizzeria.makeOrder(pizzas);
+    pizzeria.bakePizzas(orderId);
+    pizzeria.completeOrder(orderId);
+
+    delete mock;
+}
