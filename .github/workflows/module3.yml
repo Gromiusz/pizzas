@@ -16,12 +16,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up C++ build tools
-      uses: actions/setup-cpp@v3
-      with:
-        compiler: clang++-14
-        architecture: x64
-
     - name: Install dependencies
       run: |
         sudo apt update
