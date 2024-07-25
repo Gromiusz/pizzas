@@ -94,7 +94,7 @@ TEST_F(PizzeriaTest, bakeDummyPizza)
 TEST_F(PizzeriaTest, completeOrderWithStubPizza)
 {
     // Given
-    Pizzas pizzas = {new PizzaStub{"STUB"}};
+    Pizzas pizzas = {new PizzaStub{"Stub"}};
 
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
@@ -103,18 +103,20 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizza)
 
 }
 
-// TEST_F(PizzeriaTest, bakeWithStrictMock)
-// {
-//     // Given
-//     StrictMock<TimeMock>* mock = new TimeMock{};
-//     Pizzas pizzas = {mock};
+TEST_F(PizzeriaTest, bakeWithStrictMock)
+{
+    // Given
+    StrictMock<TimeMock> * mock = new StrictMock<TimeMock>();
+    Pizzas pizzas = {mock};
+    EXPECT_CALL(*mock, getName()).WillOnce(Return("StrictPizza"));
+    EXPECT_CALL(*mock, getBakingTime()).WillOnce(Return(minutes(2)));
 
-//     // When
-//     auto orderId = pizzeria.makeOrder(pizzas);
-//     pizzeria.bakePizzas(orderId);
+    // When
+    auto orderId = pizzeria.makeOrder(pizzas);
+    pizzeria.bakePizzas(orderId);
 
-//     delete mock;
-// }
+    delete mock;
+}
 
 TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
 {   
@@ -147,4 +149,24 @@ TEST_F(PizzeriaTest, bakePizzasForPizzaMock)
     pizzeria.completeOrder(orderId);
 
     delete mock;
+}
+
+TEST_F(PizzeriaTest, bakeLikeInMain)
+{
+    StrictMock<TimeMock> * strictMock = new StrictMock<TimeMock>();
+    NiceMock<TimeMock> * niceMock = new NiceMock<TimeMock>();
+    Pizzas pizzas = {new PizzaStub{"mainStub"}, new Funghi{30.0}, strictMock, niceMock};
+    EXPECT_CALL(*strictMock, getBakingTime()).WillOnce(Return(minutes(2)));
+    EXPECT_CALL(*strictMock, getName()).WillOnce(Return("Hawajska"));
+    EXPECT_CALL(*strictMock, getPrice()).WillOnce(Return(30.0));
+
+    EXPECT_CALL(*niceMock, getName()).WillOnce(Return("NicePizza"));
+
+    auto orderId = pizzeria.makeOrder(pizzas);
+    auto price = pizzeria.calculatePrice(orderId);
+    pizzeria.bakePizzas(orderId);
+    pizzeria.completeOrder(orderId);
+
+    delete strictMock;
+    delete niceMock;
 }
