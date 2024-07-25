@@ -12,7 +12,8 @@ using namespace ::testing;
 struct PizzeriaTest : public ::testing::Test
 {
 public:
-    Pizzeria pizzeria = Pizzeria("dummyName"); 
+    std::shared_ptr<FakeTimeForBakePizza> fakeTime = std::make_shared<FakeTimeForBakePizza>();
+    Pizzeria pizzeria = Pizzeria("dummyName", fakeTime); 
 };
 
 class PizzaDummy : public Pizza 
