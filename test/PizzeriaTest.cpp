@@ -21,7 +21,7 @@ class PizzaDummy : public Pizza
 public:
     std::string getName() const override {return "Dummy";}
     double getPrice() const override {return 10;}
-    minutes getBakingTime() const override {return minutes(0);}
+    minutes getBakingTime() const override {return minutes(2);}
 };
 
 class PizzaStub : public Pizza
@@ -43,7 +43,7 @@ public:
         double sum = 0;
         for(const auto & letter : name_)
         {
-            sum += (static_cast<double>(letter)/100);
+            sum += (static_cast<double>(letter)/10);
         }
        return minutes(static_cast<long int>(sum));
     }
@@ -56,6 +56,15 @@ public:
     MOCK_METHOD(double, getPrice, (), (const, override));
     MOCK_METHOD(minutes, getBakingTime, (), (const, override));
 };
+
+class TimeMock : public Pizza
+{
+public:
+    MOCK_METHOD(std::string, getName, (), (const, override));
+    MOCK_METHOD(double, getPrice, (), (const, override));
+    MOCK_METHOD(minutes, getBakingTime, (), (const, override));
+};
+
 
 
 TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55)
@@ -91,7 +100,21 @@ TEST_F(PizzeriaTest, completeOrderWithStubPizza)
     auto orderId = pizzeria.makeOrder(pizzas);
     pizzeria.bakePizzas(orderId);
     pizzeria.completeOrder(orderId);
+
 }
+
+// TEST_F(PizzeriaTest, bakeWithStrictMock)
+// {
+//     // Given
+//     StrictMock<TimeMock>* mock = new TimeMock{};
+//     Pizzas pizzas = {mock};
+
+//     // When
+//     auto orderId = pizzeria.makeOrder(pizzas);
+//     pizzeria.bakePizzas(orderId);
+
+//     delete mock;
+// }
 
 TEST_F(PizzeriaTest, calculatePriceForPizzaMock)
 {   
