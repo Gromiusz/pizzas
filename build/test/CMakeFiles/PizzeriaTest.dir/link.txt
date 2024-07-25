@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/PizzeriaTest.dir/PizzeriaTest.cpp.o  -o PizzeriaTest  ../src/libPizzaLib.a ../lib/libgtest_main.a -lGMock:gmock_main ../lib/libgtest.a -lpthread 

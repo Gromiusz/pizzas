@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/src/Funghi.hpp
+Pizza.hpp
+/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/src/Pizza.hpp
+
+/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/src/Margherita.hpp
+Pizza.hpp
+/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/src/Pizza.hpp
+
+/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/src/Pizza.hpp
+list
+-
+set
+-
+chrono
+-
+string
+-
+
+/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/src/Pizzeria.hpp
+string
+-
+tuple
+-
+vector
+-
+chrono
+-
+Pizza.hpp
+/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/src/Pizza.hpp
+
+/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/src/main.cpp
+Margherita.hpp
+/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/src/Margherita.hpp
+Funghi.hpp
+/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/src/Funghi.hpp
+Pizzeria.hpp
+/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/src/Pizzeria.hpp
+

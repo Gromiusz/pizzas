@@ -1,0 +1,5 @@
+if(EXISTS "/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/build/test/PizzeriaTest[1]_tests.cmake")
+  include("/mnt/c/Users/Kacper/Documents/INF/Pizzas-git/pizzas/build/test/PizzeriaTest[1]_tests.cmake")
+else()
+  add_test(PizzeriaTest_NOT_BUILT PizzeriaTest_NOT_BUILT)
+endif()
