@@ -66,6 +66,7 @@ TEST_F(PizzeriaTest, priceForMargherita25AndFunghi30ShouldBe55)
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
     auto price = pizzeria.calculatePrice(orderId);
+    pizzeria.bakePizzas(orderId);
 
     // Then
     ASSERT_EQ(55, price);
@@ -114,7 +115,7 @@ TEST_F(PizzeriaTest, bakePizzasForPizzaMock)
     // Given
     PizzaMock* mock = new PizzaMock{};
     Pizzas pizzas = {mock};
-    EXPECT_CALL(*mock, getBakingTime()).WillOnce(Return(minutes(0)));
+    EXPECT_CALL(*mock, getBakingTime()).WillOnce(Return(minutes(2)));
     EXPECT_CALL(*mock, getName()).WillOnce(Return("Hawajska"));
     
     // When

@@ -4,6 +4,7 @@
 #include <vector>
 #include <chrono>
 #include "Pizza.hpp"
+#include <memory>
 
 enum class Status
 {
@@ -14,6 +15,23 @@ enum class Status
 };
 
 using Order = std::tuple<int, Pizzas, std::chrono::system_clock::time_point, Status>;
+
+class TimeForBakePizza {
+public:
+    virtual ~TimeForBakePizza();
+    virtual void startBakingPizza(minutes time) = 0;
+};
+
+class RealTimeForBakePizza : public TimeForBakePizza {
+public:
+    void startBakingPizza(minutes time) override;
+};
+
+class FakeTimeForBakePizza : public TimeForBakePizza {
+public:
+    void startBakingPizza(minutes time) override;
+};
+
 using KindOfTime = std::shared_ptr<TimeForBakePizza>;
 
 class Pizzeria
@@ -32,18 +50,3 @@ private:
     KindOfTime kindOfTime_;
 };
 
-class TimeForBakePizza {
-public:
-    virtual ~TimeForBakePizza();
-    virtual void startBakingPizza(minutes time) = 0;
-};
-
-class RealTimeForBakePizza : public TimeForBakePizza {
-public:
-    void startBakingPizza(minutes time) override;
-};
-
-class FakeTimeForBakePizza : public TimeForBakePizza {
-public:
-    void startBakingPizza(minutes time) override;
-};
