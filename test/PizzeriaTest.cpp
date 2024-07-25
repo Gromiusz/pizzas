@@ -114,6 +114,7 @@ TEST_F(PizzeriaTest, bakePizzasForPizzaMock)
     PizzaMock* mock = new PizzaMock{};
     Pizzas pizzas = {mock};
     EXPECT_CALL(*mock, getBakingTime()).WillOnce(Return(minutes(0)));
+    EXPECT_CALL(*mock, getName()).WillOnce(Return("Hawajska"));
     
     // When
     auto orderId = pizzeria.makeOrder(pizzas);
